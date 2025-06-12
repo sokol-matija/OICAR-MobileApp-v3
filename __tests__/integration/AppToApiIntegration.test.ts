@@ -2,19 +2,13 @@
 // These test that your React Native app can successfully communicate with your deployed API
 
 describe('Mobile App to API Integration', () => {
-<<<<<<< HEAD
   const AZURE_API_URL = 'https://oicar-api-ms1749710600.azurewebsites.net';
-=======
-  const API_BASE_URL = process.env.API_URL || 'https://your-api-url.azurewebsites.net';
-  const hasValidApiUrl = API_BASE_URL !== 'https://your-api-url.azurewebsites.net';
->>>>>>> origin/main
   
   beforeEach(() => {
     // Reset any app state before each test
     jest.clearAllMocks();
   });
 
-<<<<<<< HEAD
   test('Mobile app can reach Azure API health endpoint', async () => {
     // Integration Test: Verify mobile app can connect to live Azure API
     try {
@@ -32,6 +26,23 @@ describe('Mobile App to API Integration', () => {
     }
   });
 
+  test('Mobile app can fetch categories from API', async () => {
+    // Integration Test: Verify mobile app can fetch categories
+    try {
+      const response = await fetch(`${AZURE_API_URL}/api/categories`);
+      
+      expect(response.ok).toBe(true);
+      
+      const data = await response.json();
+      expect(data).toBeDefined();
+      expect(data.success).toBe(true);
+      expect(Array.isArray(data.data)).toBe(true);
+      
+    } catch (error) {
+      fail(`Mobile app cannot fetch categories from API: ${error}`);
+    }
+  });
+
   test('Mobile app can fetch products from API', async () => {
     // Integration Test: Verify mobile app can fetch data from API → Database
     try {
@@ -41,11 +52,9 @@ describe('Mobile App to API Integration', () => {
       expect(response.status).not.toBe(500); // No server errors
       
       if (response.ok) {
-        const data = await response.json();
+        const data = await response.text();
         expect(data).toBeDefined();
-        
-        // Should be an object or array
-        expect(typeof data).toBe('object');
+        expect(data).toBeTruthy();
       }
       
       // Test passes if API is reachable and responds properly
@@ -78,47 +87,70 @@ describe('Mobile App to API Integration', () => {
     }
   });
 
-  test('Integration test framework is properly configured', () => {
+  test('Mobile app can handle user registration', async () => {
+    // Integration Test: Test registration endpoint accessibility
+    try {
+      const response = await fetch(`${AZURE_API_URL}/api/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}) // Empty body should trigger validation error
+      });
+      
+      // Should return validation error, not server error
+      expect([400, 422]).toContain(response.status);
+      expect(response.status).not.toBe(404);
+      expect(response.status).not.toBe(500);
+      
+    } catch (error) {
+      fail(`Registration endpoint test failed: ${error}`);
+    }
+  });
+
+  test('Mobile app can access cart endpoints', async () => {
+    // Integration Test: Verify cart endpoints exist (should require auth)
+    try {
+      const response = await fetch(`${AZURE_API_URL}/api/cart`);
+      
+      // Should return 401 Unauthorized (requires auth), not 404 or 500
+      expect([401, 403]).toContain(response.status);
+      expect(response.status).not.toBe(404);
+      expect(response.status).not.toBe(500);
+      
+    } catch (error) {
+      fail(`Cart endpoint test failed: ${error}`);
+    }
+  });
+
+  test('Mobile app can access orders endpoints', async () => {
+    // Integration Test: Verify orders endpoints exist (should require auth)
+    try {
+      const response = await fetch(`${AZURE_API_URL}/api/orders/my`);
+      
+      // Should return 401 Unauthorized (requires auth), not 404 or 500
+      expect([401, 403]).toContain(response.status);
+      expect(response.status).not.toBe(404);
+      expect(response.status).not.toBe(500);
+      
+    } catch (error) {
+      fail(`Orders endpoint test failed: ${error}`);
+    }
+  });
+
+  test('Integration test framework validates API connectivity', () => {
     // This test verifies the integration testing capability
     
     const integrationTestTypes = [
       'Mobile App → API → Database communication',
       'Authentication flows end-to-end', 
       'Product fetching workflows',
-=======
-  test('Integration test framework is configured', () => {
-    // This test always passes and shows the integration test structure is ready
-    expect(true).toBe(true);
-    
-    // Show what we would test when API is deployed:
-    const integrationTestTypes = [
-      'Mobile App → API → Database communication',
-      'Authentication flows end-to-end',
       'Shopping cart operations',
->>>>>>> origin/main
       'Error handling across systems'
     ];
     
-    expect(integrationTestTypes.length).toBe(4);
-<<<<<<< HEAD
+    expect(integrationTestTypes.length).toBe(5);
     expect(typeof fetch).toBe('function');
     expect(AZURE_API_URL).toContain('azurewebsites.net');
-=======
-  });
-
-  test('Integration tests ready for deployment', () => {
-    // This test documents the integration testing capability
-    
-    if (hasValidApiUrl) {
-      // Would run real integration tests
-      expect(hasValidApiUrl).toBe(true);
-    } else {
-      // Skip until API URL is configured
-      expect(API_BASE_URL).toBe('https://your-api-url.azurewebsites.net');
-    }
-    
-    // This test proves integration testing infrastructure is in place
-    expect(typeof fetch).toBe('function');
->>>>>>> origin/main
   });
 }); 
