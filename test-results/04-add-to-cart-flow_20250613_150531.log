@@ -1,0 +1,11 @@
+Running on Medium_Phone_API_36
+ > Flow 04-add-to-cart-flow
+Launch app "host.exp.exponent"... COMPLETED
+Wait for animation to end... COMPLETED
+Assert that "🧪 Fill Test Credentials" is visible... FAILED
+
+Assertion is false: "🧪 Fill Test Credentials" is visible
+
+==== Debug output (logs & screenshots) ====
+
+/Users/msokol/.maestro/tests/2025-06-13_150714

@@ -1,0 +1,15 @@
+
+> Unknown Property: direction
+
+/Users/msokol/Dev/Repos/OICAR/OICAR/OICAR-MobileApp/.maestro/03-item-browsing-flow.yaml:87
+╭────────────────────────────────────────────────╮
+│ 85 | - scroll:                                 │
+│ 86 |     direction: DOWN                       │
+│ 87 | - waitForAnimationToEnd                   │
+│     ^                                          │
+│ ╭────────────────────────────────────────────╮ │
+│ │ The property `direction` is not recognized │ │
+│ ╰────────────────────────────────────────────╯ │
+│ 88 |                                           │
+│ 89 | # ✅ SUCCESS: Scrolled to recommendations  │
+╰────────────────────────────────────────────────╯

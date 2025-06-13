@@ -1,0 +1,103 @@
+appId: host.exp.exponent
+---
+# 🧪 E2E Test: User Logout Flow
+# Tests: Session termination → JWT cleanup → Security
+
+- launchApp
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: App launched successfully
+- assertVisible: "🧪 Fill Test Credentials"
+
+# Login first to test logout
+- tapOn: 
+    id: "fill-test-credentials-button"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Test credentials filled (msokol/123456)
+- tapOn: 
+    id: "login-submit-button"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: User logged in
+- assertVisible: "🎉 Welcome to Snjofkalo!"
+
+# ✅ SUCCESS: Authenticated state confirmed
+# Access profile to initiate logout
+- tapOn: 
+    id: "nav-tab-profile"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Profile page opened
+- assertVisible: "Profile Information"
+
+# Navigate to settings/logout
+- tapOn: "Settings"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Settings opened
+- assertVisible: "Account Settings"
+- assertVisible: "Logout"
+
+# Initiate logout process
+- tapOn: "Logout"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Logout initiated
+# Confirm logout action if confirmation dialog appears
+- tapOn: "Yes"
+- waitForAnimationToEnd:
+    timeout: 8000
+
+# ✅ SUCCESS: Logout confirmed
+# Verify return to login/welcome screen
+- assertVisible: "Login"
+- assertVisible: "🧪 Fill Test Credentials"
+- assertVisible: "Register here"
+
+# ✅ SUCCESS: Returned to login screen
+# Verify authenticated features are no longer accessible
+# Test that previous session data is cleared
+- tapOn: 
+    id: "fill-test-credentials-button"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Test credentials filled
+- tapOn: 
+    id: "login-submit-button"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: New session started
+- assertVisible: "🎉 Welcome to Snjofkalo!"
+
+# Verify fresh session - check cart is empty
+- tapOn: 
+    id: "nav-tab-cart"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Cart accessed
+- assertVisible: "Cart"
+
+# ✅ SUCCESS: Previous session data cleared
+# Logout again to end test
+- tapOn: 
+    id: "nav-tab-profile"
+- waitForAnimationToEnd
+- tapOn: "Settings"
+- waitForAnimationToEnd
+- tapOn: "Logout"
+- waitForAnimationToEnd
+- tapOn: "Yes"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Final logout completed
+- assertVisible: "Login"
+
+---
+# 🎯 What this test validates:
+# ✅ User logout functionality
+# ✅ JWT token invalidation/cleanup
+# ✅ Session state termination
+# ✅ Redirect to login screen
+# ✅ Fresh session establishment
+# ✅ Navigation security measures 

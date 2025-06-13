@@ -1,0 +1,19 @@
+
+> Invalid Command: scrollDown
+
+/Users/msokol/Dev/Repos/OICAR/OICAR/OICAR-MobileApp/.maestro/05-complete-purchase-flow.yaml:74
+╭───────────────────────────────────────────────────────╮
+│ 72 | # ✅ SUCCESS: ZIP code entered                    │
+│ 73 | # Payment information                            │
+│ 74 | - scrollDown                                     │
+│                 ^                                     │
+│ ╭───────────────────────────────────────────────────╮ │
+│ │ `scrollDown` is not a valid command.              │ │
+│ │                                                   │ │
+│ │ Did you mean `scroll`?                            │ │
+│ │                                                   │ │
+│ │ > https://docs.maestro.dev/api-reference/commands │ │
+│ ╰───────────────────────────────────────────────────╯ │
+│ 75 | - waitForAnimationToEnd                          │
+│ 76 |                                                  │
+╰───────────────────────────────────────────────────────╯

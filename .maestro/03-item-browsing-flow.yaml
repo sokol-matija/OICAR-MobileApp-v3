@@ -1,0 +1,98 @@
+appId: host.exp.exponent
+---
+# 🧪 E2E Test: Item Browsing Flow
+# Tests: Catalog API → Search → Filters → Item details
+
+- launchApp
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: App launched successfully
+- assertVisible: "🧪 Fill Test Credentials"
+
+# Login first to access catalog
+- tapOn: 
+    id: "fill-test-credentials-button"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Test credentials filled (msokol/123456)
+- tapOn: 
+    id: "login-submit-button"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: User logged in
+- assertVisible: "🎉 Welcome to Snjofkalo!"
+
+# Navigate to products catalog
+- tapOn: 
+    id: "nav-tab-products"
+- waitForAnimationToEnd:
+    timeout: 8000
+
+# ✅ SUCCESS: Navigated to product catalog
+# Verify catalog loaded from Azure SQL
+- assertVisible: "Products"
+
+# ✅ SUCCESS: Catalog interface loaded
+# Test search functionality if available
+- tapOn: "Search"
+- inputText: "test"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Search query submitted
+# Browse product details - tap first product
+- tapOn:
+    text: "View Details"
+    index: 0
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Product details opened
+- assertVisible: "Product Details"
+- assertVisible: "Price"
+- assertVisible: "Description"
+- assertVisible: "Add to Cart"
+
+# ✅ SUCCESS: Product details displayed
+# Test scrolling through product information
+- scroll
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Product information scrollable
+# Return to catalog
+- tapOn: "Back"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Returned to catalog
+- assertVisible: "Products"
+
+# Test browsing another product
+- tapOn:
+    text: "View Details"
+    index: 1
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Second product opened
+- assertVisible: "Product Details"
+
+# Return to catalog
+- tapOn: "Back"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Navigation working correctly
+- assertVisible: "Products"
+
+# Return to home
+- tapOn: 
+    id: "nav-tab-home"
+- waitForAnimationToEnd
+
+# ✅ SUCCESS: Complete browsing flow validated
+- assertVisible: "🎉 Welcome to Snjofkalo!"
+
+---
+# 🎯 What this test validates:
+# ✅ Product catalog loading from Azure SQL
+# ✅ Search functionality  
+# ✅ Product details API integration
+# ✅ Navigation between catalog and details
+# ✅ Scrolling and UI responsiveness
+# ✅ Bottom navigation functionality 

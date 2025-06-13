@@ -1,0 +1,19 @@
+
+> Invalid Command: scrollDown
+
+/Users/msokol/Dev/Repos/OICAR/OICAR/OICAR-MobileApp/.maestro/03-item-browsing-flow.yaml:85
+╭───────────────────────────────────────────────────────╮
+│ 83 | # ✅ SUCCESS: Gallery navigation working          │
+│ 84 | # Test similar items recommendation              │
+│ 85 | - scrollDown                                     │
+│                 ^                                     │
+│ ╭───────────────────────────────────────────────────╮ │
+│ │ `scrollDown` is not a valid command.              │ │
+│ │                                                   │ │
+│ │ Did you mean `scroll`?                            │ │
+│ │                                                   │ │
+│ │ > https://docs.maestro.dev/api-reference/commands │ │
+│ ╰───────────────────────────────────────────────────╯ │
+│ 86 | - waitForAnimationToEnd                          │
+│ 87 |                                                  │
+╰───────────────────────────────────────────────────────╯

@@ -1,0 +1,19 @@
+
+> Invalid Command: scrollDown
+
+/Users/msokol/Dev/Repos/OICAR/OICAR/OICAR-MobileApp/.maestro/05-complete-purchase-flow.yaml:47
+╭───────────────────────────────────────────────────────╮
+│ 45 |                                                  │
+│ 46 | # Payment information                            │
+│ 47 | - scrollDown                                     │
+│                 ^                                     │
+│ ╭───────────────────────────────────────────────────╮ │
+│ │ `scrollDown` is not a valid command.              │ │
+│ │                                                   │ │
+│ │ Did you mean `scroll`?                            │ │
+│ │                                                   │ │
+│ │ > https://docs.maestro.dev/api-reference/commands │ │
+│ ╰───────────────────────────────────────────────────╯ │
+│ 48 | - assertVisible: "Payment Method"                │
+│ 49 | - tapOn: "Credit Card"                           │
+╰───────────────────────────────────────────────────────╯

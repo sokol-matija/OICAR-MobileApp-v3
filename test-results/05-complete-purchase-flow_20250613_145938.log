@@ -1,0 +1,15 @@
+
+> Unknown Property: direction
+
+/Users/msokol/Dev/Repos/OICAR/OICAR/OICAR-MobileApp/.maestro/05-complete-purchase-flow.yaml:76
+╭────────────────────────────────────────────────╮
+│ 74 | - scroll:                                 │
+│ 75 |     direction: DOWN                       │
+│ 76 | - waitForAnimationToEnd                   │
+│     ^                                          │
+│ ╭────────────────────────────────────────────╮ │
+│ │ The property `direction` is not recognized │ │
+│ ╰────────────────────────────────────────────╯ │
+│ 77 |                                           │
+│ 78 | # ✅ SUCCESS: Scrolled to payment section  │
+╰────────────────────────────────────────────────╯
